@@ -1,0 +1,72 @@
+{
+  "info": {
+    "name": "Blogify API",
+    "_postman_id": "6e0096ad-cf0f-4a78-ac43-ec3155c2cb6c",
+    "description": "Module 2 API shell for Blogify. Includes all currently supported posts endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Posts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "Fetch all posts. Optional query param: `sortBy` (e.g., `date`). Expected success: 200 with `{ success: true, data: ... }`.",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/posts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "posts"
+          ],
+          "query": [
+            {
+              "key": "sortBy",
+              "value": "date",
+              "description": "Optional sort flag for demonstration behavior."
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Single Post by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "Fetch one post by ID. Uses `:postId` path variable. Expected success: 200 with `{ success: true, data: { postId, ... } }`. Unknown route returns standardized error envelope.",
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/posts/:postId",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "posts",
+            ":postId"
+          ],
+          "variable": [
+            {
+              "key": "postId",
+              "value": "123",
+              "description": "Dynamic post identifier."
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
