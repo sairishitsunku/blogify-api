@@ -1,3 +1,5 @@
+const Post = require('../models/post.model.js');
+
 const getAllPosts = (req, res, next) => {
   try {
     const { sortBy } = req.query;
@@ -9,6 +11,21 @@ const getAllPosts = (req, res, next) => {
         message: 'Route handled by postController.getAllPosts',
         sortBy: sortBy || null,
         isSortedByDate,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const createPost = async (req, res, next) => {
+  try {
+    const newPost = await Post.create(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: {
+        post: newPost,
       },
     });
   } catch (err) {
@@ -32,4 +49,4 @@ const getPostById = (req, res, next) => {
   }
 };
 
-module.exports = { getAllPosts, getPostById };
+module.exports = { getAllPosts, createPost, getPostById };

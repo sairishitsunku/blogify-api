@@ -5,6 +5,7 @@ const router = express.Router();
 
 // Add route-level validation middleware here when validators are introduced.
 router.get('/', postController.getAllPosts);
+router.post('/', postController.createPost);
 router.get('/:postId', postController.getPostById);
 
 module.exports = router;
